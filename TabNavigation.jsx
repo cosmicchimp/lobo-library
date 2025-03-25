@@ -2,9 +2,10 @@ import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { NavigationContainer } from "@react-navigation/native";
 import { Text, View } from "react-native";
-import { Ionicons } from "@expo/vector-icons";
-import Octicons from '@expo/vector-icons/Octicons';
 import SearchPage from "./SearchPage"; 
+import Octicons from '@expo/vector-icons/Octicons';
+import TabNavButton from "./TabNavButton"; 
+
 
 // Sample screens replace with file and reference it later
 function HomePage() {
@@ -41,13 +42,8 @@ export default function App() {
             else if (route.name === "Profile") iconName = "person";           
             else iconName = "";        
 
-            return (
-              <TabNavButton
-                name={iconName} 
-                color={color} 
-                onPress={() => navigation.navigate(route.name)} 
-              />
-            );
+            return <Octicons name={iconName} size={size} color={color} />;
+            
           },
 
         // Correct positioning of the tab bar
