@@ -18,17 +18,16 @@ const styles = StyleSheet.create({
   header: {
     backgroundColor: "rgba(186, 12, 47, 1)",
     width: "100%",
-    top: "5%",
     height: "10%",
     textAlign: "center",
+    justifyContent: "center",
     alignSelf: "center",
   },
   title: {
+    top: "10%",
     fontWeight: 800,
     color: "white",
-    top: "50%",
-    left: "49%",
-    transform: "translateX(-49%)",
     fontSize: 20,
+    alignSelf: "center",
   },
 });

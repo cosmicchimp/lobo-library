@@ -7,6 +7,7 @@ import {
   FlatList,
   Image,
 } from "react-native";
+import Icon from "react-native-vector-icons/MaterialIcons"; // You can choose from different icon sets like MaterialIcons, Ionicons, etc.
 
 export default function SearchPage() {
   const [userInput, updateUserInput] = useState("");
@@ -44,32 +45,43 @@ export default function SearchPage() {
       />
 
       {/* TextInput for searching books */}
-      <TextInput
-        style={styles.bookInput}
-        onChangeText={updateUserInput}
-        onSubmitEditing={() => fetchBook(userInput)}
-        placeholder="Type something..."
-        placeholderTextColor="lightgrey"
-      />
-      <Text>This is the search page</Text>
+      <View style={styles.searchbar}>
+        <Icon
+          name="search"
+          size={30}
+          color="rgba(186, 12, 47, 1)"
+          style={{
+            alignSelf: "center",
+          }}
+        />
+        <TextInput
+          style={styles.bookInput}
+          onChangeText={updateUserInput}
+          onSubmitEditing={() => fetchBook(userInput)}
+          placeholder="Type something..."
+          placeholderTextColor="lightgrey"
+        />
+      </View>
     </View>
   );
 }
 
+// // //
+// // //
+//Styles past this point
 const styles = StyleSheet.create({
   container: {
     padding: 20,
   },
   bookItem: {
     marginBottom: 20,
+    alignSelf: "center",
   },
   bookInput: {
     padding: 10,
     minWidth: "90%",
-    backgroundColor: "grey",
     borderRadius: 10,
     color: "white",
-    marginBottom: "20%",
   },
   bookImage: {
     width: 100,
@@ -78,10 +90,25 @@ const styles = StyleSheet.create({
   },
   text: {
     color: "black",
-    maxWidth: "70%",
+    maxWidth: "30%",
     textAlign: "center",
+    borderBottomWidth: 1,
+    borderBottomColor: "black",
+    paddingBottom: 10,
+    marginBottom: 10,
   },
   bookCarousel: {
     marginTop: "50%",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  searchbar: {
+    display: "flex",
+    flexDirection: "row",
+    marginBottom: "5%",
+    backgroundColor: "grey",
+    borderRadius: 10,
+    padding: 10,
+    justifyContent: "space-around",
   },
 });
