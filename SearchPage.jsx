@@ -94,6 +94,7 @@ const styles = StyleSheet.create({
     width: 100,
     height: 150,
     marginBottom: 10,
+    marginTop: 30,
   },
   text: {
     color: "black",
