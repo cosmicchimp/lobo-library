@@ -8,7 +8,6 @@ export default function App() {
     <>
       <Header />
       <SafeAreaView style={styles.container} edges={["left", "right", "top"]}>
-        {" "}
         <SearchPage />
         <StatusBar style="auto" />
       </SafeAreaView>
