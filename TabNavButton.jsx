@@ -1,7 +1,7 @@
 import React, {useEffect} from "react";
 import { useIsFocused } from "@react-navigation/native"; // This hook helps you check if the tab is focused
 import { Pressable, Text, View, } from "react-native";
-import { interpolate, useAnimatedStyle, useSharedValue, withSpring } from "react-native-reanimated";
+import Animated, { interpolate, useAnimatedStyle, useSharedValue, withSpring, ReduceMotion } from "react-native-reanimated";
 import { icon } from "./constants/icons";
  const TabNavButton = ({
   routeName,
@@ -11,15 +11,27 @@ import { icon } from "./constants/icons";
   const scale = useSharedValue(0);
   const isTabFocused = useIsFocused(); 
 
-  useEffect(()=> {
-    scale.value = withSpring(typeof isFocused === "boolean" ? (isTabFocused ? 1 : 0) : isTabFocused, 
-    { duration: 350}
-  );
-  }, [scale, isTabFocused]);  
+  useEffect(() => {
+    scale.value = withSpring(isTabFocused ? 1 : 0, 
+      { duration: 350, reduceMotion: ReduceMotion.Never, });
+  }, [scale, isTabFocused]);
+
+  const animatedIconStyle = useAnimatedStyle(()=>{
+    const scaleValue = interpolate(scale.value, [0, 1], [1, 1.2]);
+
+    const top = interpolate(scale.value,  [0, 1], [0, 9]);
+
+    return {
+      transform: [{
+        scale: scaleValue
+      }],
+      top: top
+  }
+  })
 
   const animatedTextStyle = useAnimatedStyle(()=>{
     const opacity = interpolate(scale.value, [0, 1], [1, 0]);
-    return {opacity}
+    return {opacity,}
   })
 
   const onPress = () => {
@@ -41,11 +53,23 @@ import { icon } from "./constants/icons";
         alignItems: 'center', 
       })}
     >
-      
-      {icon[routeName.toLowerCase()]?.({ color: isTabFocused ? "#ba0c2f" : "#63666a", size })}
-      <Text style={{color: isTabFocused ? "#ba0c2f" : "#63666a"}}>{routeName}</Text>
+
+      {/* set tab icon */}
+      <Animated.View style={animatedIconStyle}>
+        {icon[routeName.toLowerCase()]?.({ color: isTabFocused ? "#ba0c2f" : "#63666a", size })}
+      </Animated.View>
+
+      {/* set tab text label */}
+      <Animated.Text 
+        style={{
+          ...animatedTextStyle,
+           color: isTabFocused ? "#ba0c2f" : "#63666a",
+        }}
+        >
+          {routeName}
+        </Animated.Text>
     </Pressable>
-  );size
+  );
 };
 
 export default TabNavButton;

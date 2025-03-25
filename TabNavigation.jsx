@@ -46,7 +46,7 @@ export default function TabNavigation() {
               height: 80,
               backgroundColor: "#F9F9F9",
               borderColor: "black",
-              paddingTop: 10,
+              paddingTop: 20,
             },
           };
         }}
