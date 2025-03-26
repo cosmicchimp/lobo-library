@@ -1,11 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 import {
   StyleSheet,
   View,
   Text,
-  TextInput,
-  FlatList,
-  Image,
 } from "react-native";
 export default function Header() {
   return (

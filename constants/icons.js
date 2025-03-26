@@ -1,13 +1,13 @@
 import Octicons from "@expo/vector-icons/Octicons";
 
 export const icon = {
-  home: function(props) {
+  index: function(props) {
     return <Octicons name="home" size={24} {...props} />;
   },
-  search: function(props) {
+  searchpage: function(props) {
     return <Octicons name="search" size={24} {...props} />;
   },
-  profile: function(props) {
+  profilepage: function(props) {
     return <Octicons name="person" size={24} {...props} />;
   }
-};
+}; 
