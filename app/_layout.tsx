@@ -1,34 +1,36 @@
 import { useFonts } from 'expo-font';
 import { Stack } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
-import { useEffect } from 'react';
+import React, { useCallback, useEffect } from 'react';
+import { View } from 'react-native';
 import 'react-native-reanimated';
-import Header from './Header'; 
-
-
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
 
 export default function RootLayout() {
-  const [loaded] = useFonts({
+  const [loaded, error] = useFonts({
     SpaceMono: require('../assets/fonts/SpaceMono-Regular.ttf'),
+    LoboFont: require("../assets/fonts/AmericanCaptain-MdEY.otf")
   });
 
   useEffect(() => {
-    if (loaded) {
-      SplashScreen.hideAsync();
-    }
+    console.log("Fonts loaded:", loaded);  // Debugging
+    if (loaded) SplashScreen.hideAsync();
   }, [loaded]);
-
-  if (!loaded) {
-    return null;
-  }
-
-
-  return (
-    <Stack>
-      <Stack.Screen name="(tabs)" options={{headerShown: false}} />
-    </Stack>
-);
+  
+  const onLayoutRootView = useCallback(async () => {
+    if (loaded || error) {
+      await SplashScreen.hideAsync();
+    }
+  }, [loaded, error]);
+  if (!loaded && !error) return null;
+  
+  return( 
+    <View style={{ flex: 1 }} onLayout={onLayoutRootView}>
+      <Stack>
+        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+      </Stack>
+    </View>
+  );
 }

@@ -7,7 +7,6 @@ const TabBarButton = ({onPress, onLongPress, isFocused, routeName, color, label}
     const scale = useSharedValue(0);
   
     useEffect(() => {
-        
       scale.value = withSpring(isFocused ? 1 : 0, 
         { duration: 350, reduceMotion: ReduceMotion.Never, });
     }, [scale, isFocused]);

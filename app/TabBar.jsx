@@ -1,8 +1,8 @@
 import React, {useState} from "react"
 import { View, StyleSheet } from 'react-native';
 import TabBarButton from "../components/TabBarButton";
-import Animated, { useAnimatedStyle, useSharedValue, withSpring, ReduceMotion} from "react-native-reanimated";
-
+import Animated, { useAnimatedStyle, useSharedValue, withSpring, ReduceMotion,  withDecay, withSequence, withDelay, withRepeat, withTiming} from "react-native-reanimated";
+import { Easing } from 'react-native';
 
 function TabBar({ state, descriptors, navigation }) {
 
@@ -53,8 +53,12 @@ function TabBar({ state, descriptors, navigation }) {
         const isFocused = state.index === index;
 
         const onPress = () => {
-          tabPosX.value = withSpring(buttonWidth * index, { duration: 1500, reduceMotion: ReduceMotion.Never});
-          
+          tabPosX.value = withSpring(buttonWidth * index, { 
+                      damping: 30, 
+                      stiffness: 150, 
+                      reduceMotion: ReduceMotion.Never
+                    });       
+                    
           const event = navigation.emit({
             type: 'tabPress',
             target: route.key,
@@ -78,6 +82,9 @@ function TabBar({ state, descriptors, navigation }) {
             key={route.name}
             onPress={onPress}
             onLongPress={onLongPress}
+            tabPosX={tabPosX}
+            buttonWidth={buttonWidth}
+            index={index}
             isFocused={isFocused}
             routeName={route.name}
             color={isFocused ? "#ba0c2f" : "#63666a"}
@@ -101,6 +108,6 @@ const styles = StyleSheet.create({
       backgroundColor: "#F8F8F8",
       paddingBottom: 2,  
       borderTopWidth: 2,  // top stroke
-      borderTopColor: "#a7a8aa"
+      borderTopColor: "#ba0c2f"
     }
 })
