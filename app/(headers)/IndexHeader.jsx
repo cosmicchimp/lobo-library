@@ -13,7 +13,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#F8F8F8",
     height:100,
     alignItems: "left", 
-    paddingLeft: 20,
+    paddingLeft: 15,
     borderBottomWidth: 2, 
     borderBottomColor: "#ba0c2f",
     shadowColor: "#000",
@@ -25,10 +25,11 @@ const styles = StyleSheet.create({
   headerText: {
     color: "#ba0c2f",
     fontFamily: "LoboFont",
-    fontSize: 40,
+    fontSize: 42,
+    accessibilityRole: "header",
     textTransform: "uppercase", 
     letterSpacing: 1, 
-    paddingTop:55
+    paddingTop:57
   },
 });
 

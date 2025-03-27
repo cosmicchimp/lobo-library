@@ -13,9 +13,9 @@ const styles = StyleSheet.create({
     backgroundColor: "#F8F8F8",
     height:100,
     alignItems: "left", 
-    paddingLeft: 20,
+    paddingLeft: 14,
     borderBottomWidth: 2, 
-    borderBottomColor: "#ba0c2f",
+    borderBottomColor: "#a7a8aa",
     shadowColor: "#000",
     shadowOpacity: 0.1,
     shadowOffset: { width: 0, height: 2 },
@@ -24,10 +24,11 @@ const styles = StyleSheet.create({
   },
   headerText: {
     color: "#000000",
-    fontFamily: "LoboFont",
-    fontSize: 40,
-    letterSpacing: 1, 
-    paddingTop:55
+    fontFamily: "HeaderFontt",
+    fontSize: 35,
+    fontWeight: "bold",
+    letterSpacing: -1, 
+    paddingTop:52
   },
 });
 

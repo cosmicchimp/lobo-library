@@ -26,7 +26,12 @@ function TabBar({ state, descriptors, navigation }) {
 
 
   return (
-    <View onLayout={onTabbarLayout} style={styles.tabbar}>
+    <View 
+    onLayout={onTabbarLayout} 
+    style={[
+      styles.tabbar, 
+      { borderTopColor: state.index === 0 ? "#ba0c2f" : "#a7a8aa" }
+    ]}>
 
       {/* Create tab background and apply animation  */}
       <Animated.View
@@ -107,7 +112,6 @@ const styles = StyleSheet.create({
       alignItems: "center",
       backgroundColor: "#F8F8F8",
       paddingBottom: 2,  
-      borderTopWidth: 2,  // top stroke
-      borderTopColor: "#ba0c2f"
+      borderTopWidth: 2,
     }
 })

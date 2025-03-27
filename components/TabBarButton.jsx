@@ -2,7 +2,7 @@ import { Text, Pressable, StyleSheet } from "react-native"
 import React, {useEffect} from "react"
 import { icon } from "../constants/icons"
 import Animated, { interpolate, useAnimatedStyle, useSharedValue, withSpring, ReduceMotion } from "react-native-reanimated";
-const TabBarButton = ({onPress, onLongPress, isFocused, routeName, color, label}) => {
+const TabBarButton = ({onPress, onLongPress, isFocused, tabPosX, buttonWidth, index, routeName, color, label}) => {
 
     const scale = useSharedValue(0);
   

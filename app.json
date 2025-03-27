@@ -34,7 +34,12 @@
       [
         "expo-font",
         {
-          "fonts": ["./assets/fonts/AmericanCaptain-MdEY.otf"]
+          "fonts": [
+            "./assets/fonts/Lucida-Grande-Regular-Font.ttf",
+            "./assets/fonts/SpaceMono-Regular.ttf",
+            "./assets/fonts/AmericanCaptain-MdEY.otf",
+            "./assets/fonts/Poppins-Bold.ttf"
+          ]
         }
       ]
     ]
