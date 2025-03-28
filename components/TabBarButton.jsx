@@ -1,9 +1,8 @@
 import { Text, Pressable, StyleSheet } from "react-native"
 import React, {useEffect} from "react"
-import { icon } from "../constants/icons"
+import { icons } from "../constants/icons"
 import Animated, { interpolate, useAnimatedStyle, useSharedValue, withSpring, ReduceMotion } from "react-native-reanimated";
 const TabBarButton = ({onPress, onLongPress, isFocused, tabPosX, buttonWidth, index, routeName, color, label}) => {
-
     const scale = useSharedValue(0);
   
     useEffect(() => {
@@ -37,10 +36,12 @@ const TabBarButton = ({onPress, onLongPress, isFocused, tabPosX, buttonWidth, in
             styles.tabbarbutton,
             {opacity: pressed ? 0.6 : 1}
         ]}
+        hitSlop={{ top: 10, bottom: 10, left: 20, right: 20 }} 
+
         >
         {/* Animated Tab Icon */}
         <Animated.View style={animatedIconStyle}>
-            {icon[routeName.toLowerCase()]?.( {color: isFocused ? "#FFFFFF" : "#63666a",} )}
+            {icons[routeName.toLowerCase()]?.( {color: isFocused ? "#FFFFFF" : "#63666a",} )}
         </Animated.View>
 
         {/* Animated Tab Label */}

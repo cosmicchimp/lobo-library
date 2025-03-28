@@ -13,7 +13,7 @@ export default function RootLayout() {
     SpaceMono: require('../assets/fonts/SpaceMono-Regular.ttf'),
     LoboFont: require("../assets/fonts/AmericanCaptain-MdEY.otf"),
     HeaderFont: require("../assets/fonts/Lucida-Grande-Regular-Font.ttf"),
-    HeaderFontt: require("../assets/fonts/Poppins-Bold.ttf")
+    HeaderFont2: require("../assets/fonts/Poppins-Bold.ttf")
 
   });
 

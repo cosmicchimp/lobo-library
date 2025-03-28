@@ -1,8 +1,7 @@
 import React, {useState} from "react"
 import { View, StyleSheet } from 'react-native';
 import TabBarButton from "../components/TabBarButton";
-import Animated, { useAnimatedStyle, useSharedValue, withSpring, ReduceMotion,  withDecay, withSequence, withDelay, withRepeat, withTiming} from "react-native-reanimated";
-import { Easing } from 'react-native';
+import Animated, { useAnimatedStyle, useSharedValue, withSpring, ReduceMotion} from "react-native-reanimated";
 
 function TabBar({ state, descriptors, navigation }) {
 
@@ -26,25 +25,28 @@ function TabBar({ state, descriptors, navigation }) {
 
 
   return (
-    <View 
-    onLayout={onTabbarLayout} 
-    style={[
-      styles.tabbar, 
-      { borderTopColor: state.index === 0 ? "#ba0c2f" : "#a7a8aa" }
-    ]}>
-
-      {/* Create tab background and apply animation  */}
-      <Animated.View
-          style={[ animatedBackgroundStyle, {
+    <View
+        onLayout={onTabbarLayout}
+        style={[
+          styles.tabbar,
+          { borderTopColor: state.index === 0 ? "#ba0c2f" : "#a7a8aa" },
+        ]}
+      >
+        {/* Animated Tab Background */}
+        <Animated.View
+          style={[
+            animatedBackgroundStyle,
+            {
               position: "absolute",
               height: dimensions.height - 35,
               width: buttonWidth - 40,
-              backgroundColor: "#ba0c2f", 
+              backgroundColor: "#ba0c2f",
               borderRadius: 40,
               marginHorizontal: 20,
               zIndex: 0,
-            }]} />
-      
+            },
+          ]}
+        />
       {/* Create a TabBarButton for each tab */}
       {state.routes.map((route, index) => {
         const { options } = descriptors[route.key];
@@ -58,11 +60,16 @@ function TabBar({ state, descriptors, navigation }) {
         const isFocused = state.index === index;
 
         const onPress = () => {
+          // Other effect
+          // tabPosX.value = withSpring(buttonWidth * index, { 
+          //             damping: 30, 
+          //             stiffness: 150, 
+          //             reduceMotion: ReduceMotion.Never
+          //           });
           tabPosX.value = withSpring(buttonWidth * index, { 
-                      damping: 30, 
-                      stiffness: 150, 
-                      reduceMotion: ReduceMotion.Never
-                    });       
+            duration: 1000,
+            reduceMotion: ReduceMotion.Never
+          });            
                     
           const event = navigation.emit({
             type: 'tabPress',

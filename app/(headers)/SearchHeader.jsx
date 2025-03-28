@@ -24,7 +24,7 @@ const styles = StyleSheet.create({
   },
   headerText: {
     color: "#000000",
-    fontFamily: "HeaderFontt",
+    fontFamily: "HeaderFont2",
     fontSize: 35,
     fontWeight: "bold",
     letterSpacing: -1, 
