@@ -7,7 +7,7 @@ import SearchHeader from "../(headers)/SearchHeader"
 const TabLayout =  () => {
     return(
       <Tabs tabBar={props => <TabBar {...props} />}>
-        <Tabs.Screen name="index" options={{ title: "Home", header: () => <IndexHeader /> }}/>
+        <Tabs.Screen name="index" options={{ title: "Home", headerShown: false}}/>
         <Tabs.Screen name="SearchPage" options={{ title: "Search", header: () => <SearchHeader /> }} />
         <Tabs.Screen name="menu" options={{ title: "Menu", headerShown: false}} />
       </Tabs>

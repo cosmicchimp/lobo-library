@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View, Text, Switch, ScrollView, StyleSheet, TouchableOpacity } from "react-native";
+import { View, Text, ScrollView, StyleSheet, TouchableOpacity } from "react-native";
 import { icons } from "../../../constants/icons"
 
 
@@ -8,10 +8,9 @@ const handleUNMPress = () => {
 };
 
 function Page() {
-  const [notifications, setNotifications] = useState(false);
-  const [darkMode, setDarkMode] = useState(false);
+
   return (
-    <ScrollView contentContainerStyle={{ paddingTop: 140, paddingBottom: 140 }} style={styles.container}>
+    <ScrollView contentInsetAdjustmentBehavior="automatic" style={styles.container}>
 
       {/* Account */}
       <View >
