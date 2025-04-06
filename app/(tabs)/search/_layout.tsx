@@ -25,7 +25,7 @@ export default function SearchLayout() {
         recentSearches={recentSearches}
         quieried={isQueried}
       />
-
+      
       <Stack screenOptions={{ headerShown: false }}>
         <Stack.Screen name="SearchPage" />
         <Stack.Screen name="SearchResults" />

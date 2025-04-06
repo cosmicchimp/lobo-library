@@ -51,7 +51,7 @@ export default function SearchPage() {
               renderItem={({ item }) => (
                 // recently searched item
                 <TouchableOpacity style={styles.recentlySearchedItem} onPress={() => {setSelection(item.toString()); textInputRef.current?.focus(); handleSearch();}}>
-                  <Text style={{ paddingVertical: 6, fontSize: 18, color:"#007a86", fontFamily: "Gotham" }}>{item}</Text>
+                  <Text style={{ paddingVertical: 6, fontSize: 18, color:"#007a86", fontFamily: "Gotham" }}>{"  " + item}</Text>
                   <TouchableOpacity
                     onPress={() => setRecentSearches(recentSearches.filter((search) => search !== item))}
                     style={{ padding: 5 }}

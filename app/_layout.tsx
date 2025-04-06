@@ -4,6 +4,7 @@ import * as SplashScreen from 'expo-splash-screen';
 import React, { useCallback, useEffect } from 'react';
 import { View } from 'react-native';
 import 'react-native-reanimated';
+import { SearchProvider } from '@/context/SearchContext';
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
@@ -32,10 +33,12 @@ export default function RootLayout() {
   if (!loaded && !error) return null;
   
   return( 
+    <SearchProvider>
     <View style={{ flex: 1 }} onLayout={onLayoutRootView}>
       <Stack>
         <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
       </Stack>
     </View>
+  </SearchProvider>
   );
 }

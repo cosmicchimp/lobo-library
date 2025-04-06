@@ -1,5 +1,5 @@
 import { useRouter } from "expo-router";
-
+import { Easing } from 'react-native';
 import React, { useRef, useEffect, useState, useContext } from "react";
 import { StyleSheet, View, Text, FlatList, TouchableOpacity, Keyboard, Dimensions, Animated, ScrollView, Image, } from "react-native";
 import SearchBar from "@/components/SearchBar";
@@ -81,26 +81,17 @@ export default function PullDownBar({ recentSearches, quieried }) {
     const widthAnim = useRef(new Animated.Value(83)).current;  // Start at 83%
     const marginLeftAnim = useRef(new Animated.Value(0)).current;
     useEffect(() => {
-      // When typing: Animate the search bar width and opacity of the search ranger
-      if (!quieried && userInput !== "") { // If typing:
-  
-        const targetWidth = 100; // Bring to 100% width
-        const targetMargin = 100;
-        Animated.parallel([
-          // Search bar animation (grow width)
-          Animated.spring(widthAnim, {toValue: targetWidth, friction: 5, tension: 50, useNativeDriver: false, }), // search bar
-          Animated.spring(marginLeftAnim, {toValue: targetWidth, friction: 5, tension: 50, useNativeDriver: false, }),
-        ]).start();
-      }
-      else {
-        const targetWidth = 81;  // Return to 83% width when input is empty
-        const targetMargin = 0;
-        Animated.parallel([ // Search bar animation (shrink width)
-          Animated.spring(widthAnim, {toValue: targetWidth,duration: 50,friction: 25, tension: 25, useNativeDriver: false, }), // search bar
-          Animated.spring(marginLeftAnim, {toValue: targetWidth,duration: 2000,friction: 25, tension: 25, useNativeDriver: false, }), // search bar
-        ]).start();
+      let f = 10;
+      let t = 120;
+      if (!quieried && userInput !== "") {
+        Animated.spring(widthAnim, { toValue: 100, friction: f, tension: t, useNativeDriver: false }).start();
+      } else if (quieried) {
+        Animated.spring(widthAnim, { toValue: 64, friction: f, tension: t, useNativeDriver: false }).start();
+      } else {
+        Animated.spring(widthAnim, { toValue: 82, friction: f, tension: t, useNativeDriver: false }).start();
       }
     }, [userInput, quieried]);
+    
   
   // Animate border radius
   const borderRadiusAnim = useRef(new Animated.Value(35)).current;
@@ -128,10 +119,8 @@ export default function PullDownBar({ recentSearches, quieried }) {
   useEffect(() => {
     // Listens for when the keyboard shows
     const keyboardDidShowListener = Keyboard.addListener( 'keyboardDidShow', (e) => { setKeyboardHeight(e.endCoordinates.height); },);
-
     // Listens for when the keyboard hides
     const keyboardDidHideListener = Keyboard.addListener('keyboardDidHide', () => { setKeyboardHeight(0); },);
-
     // Clean up listeners on component unmount
     return () => { keyboardDidHideListener.remove();  keyboardDidShowListener.remove(); };
   }, []);

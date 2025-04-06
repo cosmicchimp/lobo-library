@@ -22,7 +22,7 @@ const SearchBar = ({ widthAnim, marginLeftAnim,quieried}) => {
             onPress={() => {router.back(); setIsFocused(false); setUserInput("")}} 
             style={[styles.backButton, { display: false ? "none" : "flex" }]}>
           <View >
-              {icons.menuLeft({ size: 24, color: "white" })}
+              {icons.menuLeft({ size: 24, color: "#007a86" })}
           </View>
         </TouchableOpacity>
 
@@ -44,28 +44,37 @@ const SearchBar = ({ widthAnim, marginLeftAnim,quieried}) => {
       <Animated.View
         style={{
           position: "absolute",
+          alignSelf: 'center', 
           width: 
             (!quieried && userInput=="")
               ? widthAnim.interpolate({
-                  inputRange: [83, 100],
-                  outputRange: ["81.5%", "88%"],
+                  inputRange: [82, 100],
+                  outputRange: ["82%", "100%"],
                 })
                 : (quieried)
                 ? widthAnim.interpolate({
-                    inputRange: [0, 100],
-                    outputRange: ["81.57%", "62%"],
+                    inputRange: [64, 100],  // Reversed order: from 62 to 100
+                    outputRange: ["64%", "100%"]
                   })
-                  :  widthAnim.interpolate({
-                      inputRange: [83, 100],
-                      outputRange: ["81.5%", "100%"],
-                      }),
-          marginLeft: (quieried)
-                ? marginLeftAnim.interpolate({
+                  : widthAnim.interpolate({
+                    inputRange: [0, 100],  // Reversed order: from 62 to 100
+                    outputRange: ["0%", "100%"]
+                  }),
+          transform: [{
+            translateX: (!quieried && userInput!=="")
+              ? widthAnim.interpolate({
+                inputRange: [0, 100],
+                outputRange: [0, -0] // Shift the element 30% to the left
+              })
+              : (!quieried && userInput==="" ) 
+                ? widthAnim.interpolate({
                   inputRange: [0, 100],
-                  outputRange: ["0%", '19%'], 
+                  outputRange: [0, -40] // Shift the element 30% to the left
                 })
                 : "0%"
-        }}>
+          }]
+        }}
+      >
           {/* icon, text input, and cancel button*/}
           <View style={styles.searchbar}>
 
@@ -83,7 +92,7 @@ const SearchBar = ({ widthAnim, marginLeftAnim,quieried}) => {
                   setIsFocused(false); // only blur when input is empty
                 }
               }}              
-              style={[styles.bookInput, {width: quieried ? "75%" : "83%",}]}
+              style={[styles.bookInput, {width: quieried ? "71%" : "83%",}]}
               onChangeText={setUserInput}
               onSubmitEditing={handleSearch}
               placeholder="Search..."
@@ -91,14 +100,14 @@ const SearchBar = ({ widthAnim, marginLeftAnim,quieried}) => {
               value={userInput}
             />
         
-            {/* cancel button (x) , position: "absolute", top:11, left: quieried ? "83%" : "89%" onPress={() => setUserInput("")}*/}
-            <View style={{justifyContent:"center"}}>
+            {/* cancel button (x) ,*/}
+            <View style={{justifyContent:"center", marginRight: (quieried) ? 20 : 0}}>
               <TouchableOpacity  
                 onPress={() => {
                   if (quieried) router.back();
                   setUserInput(""); 
                 }} 
-                style={[styles.cancelButton, {display: userInput==="" ? "none" : "flex",}]}>
+                style={[styles.cancelButton, {display: userInput==="" ? "none" : "flex", marginLeft:-0}]}>
                 {icons.x({ size: 18, color: "#007a86" })}          
               </TouchableOpacity>
             </View>
@@ -128,11 +137,14 @@ const styles = StyleSheet.create({
     backgroundColor: "rgba(0, 122, 134,0.2)", 
   },
   backButton: {
-    zIndex: -1,
-    paddingLeft:15,
-    paddingRight:25,
-    borderRadius: 25,
-    zIndex: -1,
+    width: 60, height: 60, 
+    alignItems: "center", 
+    justifyContent: "center",
+    backgroundColor: "white",
+    borderColor: '#007a86',
+    borderRadius: 35,
+    borderWidth: 4,
+    paddingRight: 3
   },
   bookInput: {
     color: "black",
