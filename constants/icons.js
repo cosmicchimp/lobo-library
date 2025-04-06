@@ -8,7 +8,7 @@ export const icons = {
   index: function(props) {
     return <Octicons name="home" size={24} {...props} />;
   },
-  searchpage: function(props) {
+  search: function(props) {
     return <Octicons name="search" size={24} {...props} />;
   },
   menu: function(props) {
@@ -34,5 +34,17 @@ export const icons = {
   },
   helpPrivacy: function(props) {
     return <MaterialCommunityIcons name="file-document-multiple-outline" size={22} color={redColor} />;
+  },
+  menuUp: function(props) {
+    return <Octicons name="chevron-up" size={22} color={redColor} {...props} />;
+  },
+  menuDown: function(props) {
+    return <Octicons name="chevron-down" size={22} color={redColor} {...props} />;
+  },
+  menuLeft: function(props) {
+    return <Octicons name="chevron-left" size={22} color={redColor} {...props} />;
+  },
+  x: function(props) {
+    return <Octicons name="x" size={22} {...props} />;
   },
 }; 

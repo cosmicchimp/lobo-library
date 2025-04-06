@@ -1,16 +1,27 @@
 import { Tabs } from "expo-router";
 import React from "react";
-import TabBar from "../TabBar";
-import IndexHeader from "../(headers)/IndexHeader"
-import SearchHeader from "../(headers)/SearchHeader"
+import TabBar from "../../components/TabBar";
+import { SearchProvider } from '@/context/SearchContext';
+
 
 const TabLayout =  () => {
     return(
-      <Tabs tabBar={props => <TabBar {...props} />}>
+      <Tabs tabBar={(props: React.JSX.IntrinsicAttributes & { state: any; descriptors: any; navigation: any; }) => <TabBar {...props} />}>
+        
+        {/* home screen */}
         <Tabs.Screen name="index" options={{ title: "Home", headerShown: false}}/>
-        <Tabs.Screen name="SearchPage" options={{ title: "Search", header: () => <SearchHeader /> }} />
+        
+        {/* search screen */}
+        <SearchProvider> 
+          <Tabs.Screen name="search" options={{ title: "Search", headerShown: false }} />
+        </SearchProvider>
+
+        {/* menu screen */}
         <Tabs.Screen name="menu" options={{ title: "Menu", headerShown: false}} />
       </Tabs>
     )
 }
+
 export default TabLayout;
+
+{/* SearchProvider provides search context to the search screen only */}

@@ -1,6 +1,6 @@
 import React, {useState} from "react"
 import { View, StyleSheet } from 'react-native';
-import TabBarButton from "../components/TabBarButton";
+import TabBarButton from "./TabBarButton";
 import Animated, { useAnimatedStyle, useSharedValue, withSpring, ReduceMotion} from "react-native-reanimated";
 
 function TabBar({ state, descriptors, navigation }) {
@@ -38,7 +38,7 @@ function TabBar({ state, descriptors, navigation }) {
             animatedBackgroundStyle,
             {
               position: "absolute",
-              height: dimensions.height - 35,
+              height: dimensions.height - 45,
               width: buttonWidth - 40,
               backgroundColor: "#ba0c2f",
               borderRadius: 40,

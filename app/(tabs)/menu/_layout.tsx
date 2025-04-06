@@ -9,7 +9,7 @@ export default function MenuLayout() {
         }}
     >
       <Stack.Screen
-        name="ProfilePage"
+        name="MenuPage"
         options={{
           headerTitle: "Menu",
           headerTitleAlign: "left",
