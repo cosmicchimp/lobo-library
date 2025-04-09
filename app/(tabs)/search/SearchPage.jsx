@@ -6,7 +6,7 @@ import { BlurView } from "expo-blur";
 import PullDownBar from "../../../components/PullDownBar";
 import { useContext } from "react";
 import { SearchContext } from "../../../context/SearchContext";
-
+import { LinearGradient } from "expo-linear-gradient";
 
 
 export default function SearchPage() {
@@ -27,44 +27,49 @@ export default function SearchPage() {
 //////////////////////////////////////////////////////////////////////////////////
   return (
     // Top Bar Scroll with filters
-    <View style={{flexDirection:"column", }}>
+    <LinearGradient
+        colors={['rgba(255, 255, 255, 1)', 'rgba(245, 245, 245, 0.8)', 'rgba(230, 230, 230, 0.7)']}
+        style={{ flex: 1 }}
+    >
+      <View style={{flexDirection:"column", }}>
 
-      {/*Recently made searches*/}
-      <View style={{top: 200, position:"absolute"}}>
-        <BlurView tint={"dark"} intensity={0} style={[styles.searchBlur, {display: (recentSearches.length > 0 && userInput.trim() === "" ? "flex" : "none")}]}>
-          <View style={[styles.searchBlurContainer, {  }]}>
-            
-            {/* title */}
-            <View style={styles.recentlySearchedItemTitle}>
-              <Text style={{ fontFamily: "HeaderFont2", fontSize: 24, borderBottomColor: "#a7a8aa" }}>
-                Recent Queries
-              </Text>
-              <TouchableOpacity onPress={() => setRecentSearches([])} style={{ padding: 3, alignContent:"center" }}>
-                <Octicons name="x" size={21} />
-              </TouchableOpacity>
-            </View>
-
-            <FlatList
-              data={recentSearches}
-              keyExtractor={(item, index) => index.toString()}
-              contentContainerStyle={{ paddingBottom: 20 }}
-              renderItem={({ item }) => (
-                // recently searched item
-                <TouchableOpacity style={styles.recentlySearchedItem} onPress={() => {setSelection(item.toString()); textInputRef.current?.focus(); handleSearch();}}>
-                  <Text style={{ paddingVertical: 6, fontSize: 18, color:"#007a86", fontFamily: "Gotham" }}>{"  " + item}</Text>
-                  <TouchableOpacity
-                    onPress={() => setRecentSearches(recentSearches.filter((search) => search !== item))}
-                    style={{ padding: 5 }}
-                  >
-                    <Octicons name="x" size={15} />
-                  </TouchableOpacity>
+        {/*Recently made searches*/}
+        <View style={{top: 200, position:"absolute"}}>
+          <BlurView tint={"dark"} intensity={0} style={[styles.searchBlur, {display: (recentSearches.length > 0 && userInput.trim() === "" ? "flex" : "none")}]}>
+            <View style={[styles.searchBlurContainer, {  }]}>
+              
+              {/* title */}
+              <View style={styles.recentlySearchedItemTitle}>
+                <Text style={{ fontFamily: "HeaderFont2", fontSize: 24, borderBottomColor: "#a7a8aa" }}>
+                  Recent Queries
+                </Text>
+                <TouchableOpacity onPress={() => setRecentSearches([])} style={{ padding: 3, alignContent:"center" }}>
+                  <Octicons name="x" size={21} />
                 </TouchableOpacity>
-              )}
-            />
-          </View>
-        </BlurView>
-      </View>
-    </View>    
+              </View>
+
+              <FlatList
+                data={recentSearches}
+                keyExtractor={(item, index) => index.toString()}
+                contentContainerStyle={{ paddingBottom: 20 }}
+                renderItem={({ item }) => (
+                  // recently searched item
+                  <TouchableOpacity style={styles.recentlySearchedItem} onPress={() => {setSelection(item.toString()); textInputRef.current?.focus(); handleSearch();}}>
+                    <Text style={{ paddingVertical: 6, fontSize: 18, color:"#007a86", fontFamily: "Gotham" }}>{"  " + item}</Text>
+                    <TouchableOpacity
+                      onPress={() => setRecentSearches(recentSearches.filter((search) => search !== item))}
+                      style={{ padding: 5 }}
+                    >
+                      <Octicons name="x" size={15} />
+                    </TouchableOpacity>
+                  </TouchableOpacity>
+                )}
+              />
+            </View>
+          </BlurView>
+        </View>
+      </View>    
+    </LinearGradient>
   );
 }
 

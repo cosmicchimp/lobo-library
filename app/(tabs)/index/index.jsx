@@ -1,24 +1,32 @@
 import React, { useState } from "react";
 import { View, Text, Switch, ScrollView, StyleSheet, TouchableOpacity } from "react-native";
 import { icons } from "../../../constants/icons"
+import { LinearGradient } from "expo-linear-gradient";
+import Carousel from "../../../components/Carousel";
 
 
-const handleUNMPress = () => {
-  console.log("Sign in with SSO (UNM) Pressed!");
-};
 
 function Page() {
   return (
-    <ScrollView contentInsetAdjustmentBehavior="automatic" style={styles.container}>
+    <LinearGradient
+      colors={['rgba(255, 255, 255, 1)', 'rgba(245, 245, 245, 0.8)', 'rgba(230, 230, 230, 0.7)']}
+      style={{ flex: 1 }}
+    >
+      <View style={styles.container}></View>
+      {/* <ScrollView contentInsetAdjustmentBehavior="automatic" style={styles.container}></ScrollView> */}
       <View>
-        <Text style={styles.textHeader}>Stuff</Text>
-      </View>
-    </ScrollView>
+        <Text style={styles.textHeader}>In The Library</Text>
+      </View> 
+      <Carousel/>
+      <Carousel/>
+
+
+    </LinearGradient>
   );
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, padding: 15, backgroundColor: "#fff" },
+  container: {  top:0, marginTop:150, backgroundColor: "transparent" },
   seperator: {
     marginVertical: 25,
     borderBottomWidth: 2,
@@ -38,7 +46,7 @@ const styles = StyleSheet.create({
     fontSize: 24,       // Large text
     //fontWeight: "bold", // Bold text
     textAlign: "left", // Center align
-    paddingVertical: 15, // Top & bottom padding
+    padding: 15, // Top & bottom padding
     color: "#525559",      // Dark gray color
    // textTransform: "uppercase", // Makes text uppercase
     letterSpacing: 1,  

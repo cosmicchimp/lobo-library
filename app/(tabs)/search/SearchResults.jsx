@@ -3,6 +3,7 @@ import React, { useState, useEffect, useContext } from "react";
 import { StyleSheet, View, Text, FlatList, TouchableOpacity, Keyboard, Dimensions} from "react-native";
 import PullDownBar from "../../../components/PullDownBar";
 import { SearchContext } from "../../../context/SearchContext";
+import { LinearGradient } from "expo-linear-gradient";
 
 
 export default function SearchResults() {
@@ -19,8 +20,13 @@ export default function SearchResults() {
   }, []);
 
   return (
-    <View>
+    <LinearGradient
+            colors={['rgba(255, 255, 255, 1)', 'rgba(245, 245, 245, 0.8)', 'rgba(230, 230, 230, 0.7)']}
+            style={{ flex: 1 }}
+    >
+      <View>
 
-    </View>
+      </View>
+    </LinearGradient>
   );
 }

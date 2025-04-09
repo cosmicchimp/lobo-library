@@ -3,9 +3,9 @@ import { useRouter } from "expo-router";
 
 import { StyleSheet, View, TextInput, TouchableOpacity, Image, Animated } from "react-native";
 import Icon from "react-native-vector-icons/FontAwesome";
-import { icons } from "../constants/icons";
+import { icons } from "../../constants/icons";
 import { useNavigation } from "expo-router";
-import { SearchContext } from "../context/SearchContext";
+import { SearchContext } from "../../context/SearchContext";
 
 
 const SearchBar = ({ widthAnim, marginLeftAnim,quieried}) => {
@@ -44,7 +44,7 @@ const SearchBar = ({ widthAnim, marginLeftAnim,quieried}) => {
       <Animated.View
         style={{
           position: "absolute",
-          alignSelf: 'center', 
+          alignSelf: "center",
           width: 
             (!quieried && userInput=="")
               ? widthAnim.interpolate({
@@ -53,23 +53,23 @@ const SearchBar = ({ widthAnim, marginLeftAnim,quieried}) => {
                 })
                 : (quieried)
                 ? widthAnim.interpolate({
-                    inputRange: [64, 100],  // Reversed order: from 62 to 100
+                    inputRange: [64, 100], 
                     outputRange: ["64%", "100%"]
                   })
                   : widthAnim.interpolate({
-                    inputRange: [0, 100],  // Reversed order: from 62 to 100
+                    inputRange: [0, 100],  
                     outputRange: ["0%", "100%"]
                   }),
           transform: [{
             translateX: (!quieried && userInput!=="")
               ? widthAnim.interpolate({
                 inputRange: [0, 100],
-                outputRange: [0, -0] // Shift the element 30% to the left
+                outputRange: [0, 0] 
               })
               : (!quieried && userInput==="" ) 
                 ? widthAnim.interpolate({
                   inputRange: [0, 100],
-                  outputRange: [0, -40] // Shift the element 30% to the left
+                  outputRange: [0, -40] 
                 })
                 : "0%"
           }]
@@ -93,7 +93,7 @@ const SearchBar = ({ widthAnim, marginLeftAnim,quieried}) => {
                 }
               }}              
               style={[styles.bookInput, {width: quieried ? "71%" : "83%",}]}
-              onChangeText={setUserInput}
+              onChangeText={(text) => setUserInput(text.trimStart())}
               onSubmitEditing={handleSearch}
               placeholder="Search..."
               placeholderTextColor={"#007a86"}

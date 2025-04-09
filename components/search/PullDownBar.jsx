@@ -3,8 +3,8 @@ import { Easing } from 'react-native';
 import React, { useRef, useEffect, useState, useContext } from "react";
 import { StyleSheet, View, Text, FlatList, TouchableOpacity, Keyboard, Dimensions, Animated, ScrollView, Image, } from "react-native";
 import SearchBar from "@/components/SearchBar";
-import { icons } from "../constants/icons";
-import { SearchContext } from "../context/SearchContext";
+import { icons } from "../../constants/icons";
+import { SearchContext } from "../../context/SearchContext";
 
 
 import { use } from "react";
@@ -78,20 +78,19 @@ export default function PullDownBar({ recentSearches, quieried }) {
   };
 
   // Animate the search bar and search ranger width when userInput changes
-    const widthAnim = useRef(new Animated.Value(83)).current;  // Start at 83%
-    const marginLeftAnim = useRef(new Animated.Value(0)).current;
-    useEffect(() => {
-      let f = 10;
-      let t = 120;
-      if (!quieried && userInput !== "") {
-        Animated.spring(widthAnim, { toValue: 100, friction: f, tension: t, useNativeDriver: false }).start();
-      } else if (quieried) {
-        Animated.spring(widthAnim, { toValue: 64, friction: f, tension: t, useNativeDriver: false }).start();
-      } else {
-        Animated.spring(widthAnim, { toValue: 82, friction: f, tension: t, useNativeDriver: false }).start();
-      }
-    }, [userInput, quieried]);
-    
+  const widthAnim = useRef(new Animated.Value(83)).current;  // Start at 83%
+  const marginLeftAnim = useRef(new Animated.Value(0)).current;
+  useEffect(() => {
+    let f = 80;
+    let t = 120;
+    if (!quieried && userInput !== "") {
+      Animated.spring(widthAnim, { toValue: 100, friction: f, tension: t, useNativeDriver: false }).start();
+    } else if (quieried) {
+      Animated.spring(widthAnim, { toValue: 64, friction: f, tension: t, useNativeDriver: false }).start();
+    } else {
+      Animated.spring(widthAnim, { toValue: 82, friction: f, tension: t, useNativeDriver: false }).start();
+    }
+  }, [userInput, quieried]);  
   
   // Animate border radius
   const borderRadiusAnim = useRef(new Animated.Value(35)).current;
