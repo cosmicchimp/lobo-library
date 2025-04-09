@@ -17,8 +17,8 @@ function Page() {
       <View>
         <Text style={styles.textHeader}>In The Library</Text>
       </View> 
-      <Carousel/>
-      <Carousel/>
+      {/* <Carousel/>
+      <Carousel/> */}
 
 
     </LinearGradient>
