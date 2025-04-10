@@ -1,0 +1,95 @@
+.
+├── app
+│   ├── assets
+│   │   ├── animations
+│   │   │   ├── bookLoader.json
+│   │   │   └── splashScreen.json
+│   │   ├── fonts
+│   │   │   ├── AmericanCaptain-MdEY.otf
+│   │   │   ├── Gotham-Black.ttf
+│   │   │   ├── Lucida-Grande-Regular-Font.ttf
+│   │   │   ├── Poppins-Bold.ttf
+│   │   │   ├── Quicksand.ttf
+│   │   │   └── SpaceMono-Regular.ttf
+│   │   └── images
+│   │       ├── adaptive-icon.png
+│   │       ├── favicon.png
+│   │       ├── icon.png
+│   │       ├── lobo_paw2.png
+│   │       ├── lobo_paw.png
+│   │       ├── lobo_paw.svg
+│   │       ├── partial-react-logo.png
+│   │       ├── paw-splash.png
+│   │       ├── react-logo@2x.png
+│   │       ├── react-logo@3x.png
+│   │       ├── react-logo.png
+│   │       ├── smith-plaza.jpg
+│   │       ├── splash-icon.png
+│   │       ├── UNMLogo.png
+│   │       ├── unm_pattern100.png
+│   │       ├── unm_pattern(1).png
+│   │       ├── unm_pattern50.png
+│   │       ├── unm_pattern70.png
+│   │       └── unm_pattern.png
+│   ├── components
+│   │   ├── carousel
+│   │   │   ├── Carousel.jsx
+│   │   │   ├── SliderItem.tsx
+│   │   │   └── Slider.tsx
+│   │   ├── navigation
+│   │   │   ├── TabBarButton.jsx
+│   │   │   └── TabBar.jsx
+│   │   ├── search
+│   │   │   ├── PullDownBar.jsx
+│   │   │   └── SearchBar.jsx
+│   │   ├── ThemedText.tsx
+│   │   └── ThemedView.tsx
+│   ├── constants
+│   │   ├── Colors.ts
+│   │   └── icons.js
+│   ├── context
+│   │   └── SearchContext.jsx
+│   ├── hooks
+│   │   ├── useColorScheme.ts
+│   │   ├── useColorScheme.web.ts
+│   │   └── useThemeColor.ts
+│   ├── scripts
+│   └── src
+│       ├── _layout.tsx
+│       ├── +not-found.tsx
+│       └── (tabs)
+│           ├── index
+│           │   ├── index.jsx
+│           │   └── _layout.tsx
+│           ├── _layout.tsx
+│           ├── menu
+│           │   ├── _layout.tsx
+│           │   ├── MenuPage.jsx
+│           │   └── ProfilePage.jsx
+│           └── search
+│               ├── _layout.tsx
+│               ├── SearchPage.jsx
+│               └── SearchResults.jsx
+├── app.json
+├── backend
+│   └── src
+│       ├── db
+│       │   └── testConnection.js
+│       ├── routes
+│       │   └── carousel.ts
+│       └── server.ts
+├── node_modules
+│  
+├── package.json
+├── package-lock.json
+├── prisma
+│   ├── migrations
+│   │   ├── 20250410002049_init
+│   │   │   └── migration.sql
+│   │   └── migration_lock.toml
+│   └── schema.prisma
+├── README.md
+├── tree.txt
+└── tsconfig.json
+
+4190 directories, 19499 files

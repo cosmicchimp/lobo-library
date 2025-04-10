@@ -11,6 +11,8 @@
   "include": [
     "**/*.ts",
     "**/*.tsx",
+    "app/components/search/SearchBar.jsxapp/src/(tabs)/search/_layout.tsx.tsx",
     ".expo/types/**/*.ts",
-    "expo-env.d.ts", "components/search/SearchBar.jsx", "app/(tabs)/search/_layout.tsx", ]
+    "expo-env.d.ts"
+  ]
 }

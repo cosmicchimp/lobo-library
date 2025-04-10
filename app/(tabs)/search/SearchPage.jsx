@@ -1,11 +1,9 @@
 import React, { useState, useEffect, useRef } from "react";
 import { StyleSheet, View, Text, FlatList, TouchableOpacity, Keyboard, Dimensions} from "react-native";
 import Octicons from "@expo/vector-icons/Octicons";
-import { useRouter } from "expo-router";
 import { BlurView } from "expo-blur";
-import PullDownBar from "../../../components/PullDownBar";
 import { useContext } from "react";
-import { SearchContext } from "../../../context/SearchContext";
+import { SearchContext } from "../../../lib/context/SearchContext";
 import { LinearGradient } from "expo-linear-gradient";
 
 

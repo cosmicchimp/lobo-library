@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { StyleSheet, Dimensions, View, Text, Image, Animated, FlatList, TouchableOpacity, Linking } from 'react-native';
-import carouselData from '../../../assets/scraped_data/inTheLibrary.json'; // for now its stored locally
 import Carousel from 'react-native-reanimated-carousel';
 
 const LibraryCarousel = () => {
@@ -11,8 +10,17 @@ const LibraryCarousel = () => {
   const adjustedScrollX = Animated.subtract(scrollX, width); // remove the 1-item offset
 
 
-  useEffect(() => {
-    //setCarouselItems(carouselData.carousel); // Use the data from the JSON file
+  useEffect(async () => {
+
+    // Fetch carousel json data from db
+    let carouselData;
+    try {
+      const response = await fetch("http://localhost:3006/api/carousel");
+      carouselData = await response.json();
+    } catch (error) {
+      console.error("Fetch failed:", error);
+    }
+
     if (carouselData?.carousel?.length) {
         const data = carouselData.carousel;
         // Clone last + first items
@@ -33,7 +41,6 @@ const LibraryCarousel = () => {
       }, 1000000); // 3 secs
     
           
-    
         // Delay scrollToIndex slightly to allow rendering
         setTimeout(() => {
           flatListRef.current?.scrollToIndex({ index: 1, animated: false });
@@ -87,15 +94,8 @@ const handleScrollEnd = (event) => {
       >
         <Text>{item.alt_text}</Text>
       </View>
-      
-      {/* {item.link && (
-        <TouchableOpacity onPress={() => Linking.openURL(item.link)}>
-          <Text style={{ color: 'blue' }}>Learn more</Text>
-        </TouchableOpacity>
-      )} */}
     </View>
   );
-
 
   return (
     <View style={{ flex: 1, padding: 10, height: imageH, borderColor: "#007a86", borderTopColor:"#007a86", borderWidth:2 }}>

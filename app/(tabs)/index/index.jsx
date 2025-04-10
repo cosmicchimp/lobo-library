@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { View, Text, Switch, ScrollView, StyleSheet, TouchableOpacity } from "react-native";
-import { icons } from "../../../constants/icons"
+import { icons } from "../../../lib/constants/icons"
 import { LinearGradient } from "expo-linear-gradient";
-import Carousel from "../../../components/Carousel";
+import Carousel from "../../../lib/components/carousel/Carousel";
 
 
 
@@ -17,8 +17,8 @@ function Page() {
       <View>
         <Text style={styles.textHeader}>In The Library</Text>
       </View> 
-      {/* <Carousel/>
-      <Carousel/> */}
+      {/* <Carousel/> */}
+      {/* <Carousel/> */}
 
 
     </LinearGradient>

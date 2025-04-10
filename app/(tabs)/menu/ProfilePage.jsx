@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { View, Text, ScrollView, StyleSheet, TouchableOpacity } from "react-native";
-import { icons } from "../../../constants/icons"
+import { icons } from "../../../lib/constants/icons"
 
 
 const handleUNMPress = () => {

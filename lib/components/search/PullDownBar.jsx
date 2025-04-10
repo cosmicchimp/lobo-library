@@ -2,7 +2,7 @@ import { useRouter } from "expo-router";
 import { Easing } from 'react-native';
 import React, { useRef, useEffect, useState, useContext } from "react";
 import { StyleSheet, View, Text, FlatList, TouchableOpacity, Keyboard, Dimensions, Animated, ScrollView, Image, } from "react-native";
-import SearchBar from "@/components/SearchBar";
+import SearchBar from "./SearchBar";
 import { icons } from "../../constants/icons";
 import { SearchContext } from "../../context/SearchContext";
 
@@ -140,7 +140,7 @@ export default function PullDownBar({ recentSearches, quieried }) {
 
                     {/* paw logo */}
                     <Animated.View style={[styles.logoContainer, { transform: [{ scale: scaleAnim }, { rotate: rotateInterpolation }] }]}>
-                        <Image source={require('@/assets/images/lobo_paw.png')} style={styles.logo} />
+                        <Image source={require('../../assets/images/lobo_paw.png')} style={styles.logo} />
                     </Animated.View>
 
                     {/* search bar */}

@@ -1,8 +1,7 @@
 import { useGlobalSearchParams } from "expo-router";
 import React, { useState, useEffect, useContext } from "react";
 import { StyleSheet, View, Text, FlatList, TouchableOpacity, Keyboard, Dimensions} from "react-native";
-import PullDownBar from "../../../components/PullDownBar";
-import { SearchContext } from "../../../context/SearchContext";
+import { SearchContext } from "../../../lib/context/SearchContext";
 import { LinearGradient } from "expo-linear-gradient";
 
 

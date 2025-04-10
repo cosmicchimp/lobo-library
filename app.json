@@ -1,15 +1,15 @@
 {
   "expo": {
-    "name": "lobo-library-v2",
-    "slug": "lobo-library-v2",
+    "name": "lobo-library",
+    "slug": "lobo-library",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/images/paw-splash.png",
+    "icon": "./lib/assets/images/paw-splash.png",
     "scheme": "myapp",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
     "splash": {
-      "image": "./assets/images/paw-splash.png",
+      "image": "./lib/assets/images/paw-splash.png",
       "resizeMode": "contain",
       "backgroundColor": "#ba0c2f"
     },
@@ -18,7 +18,7 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/images/adaptive-icon.png",
+        "foregroundImage": "./lib/assets/images/paw-splash.png",
         "backgroundColor": "#ffffff"
       }
     },

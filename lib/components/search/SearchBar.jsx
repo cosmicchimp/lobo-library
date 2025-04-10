@@ -33,7 +33,7 @@ const SearchBar = ({ widthAnim, marginLeftAnim,quieried}) => {
             onPress={() => alert("Image clicked!")}
           >
             <Image
-              source={require("@/assets/images/UNMLogo.png")} 
+              source={require("../../assets/images/UNMLogo.png")} 
               style={{ width: 40, height: 40 }}
             />
           </TouchableOpacity>
