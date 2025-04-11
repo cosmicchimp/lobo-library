@@ -51,6 +51,7 @@ export default function SearchResults() {
         <FlatList
           data={books}
           keyExtractor={(item) => item.id}
+          contentInsetAdjustmentBehavior="automatic"
           renderItem={({ item }) => (
             <TouchableOpacity style={styles.card}>
               <Image source={{ uri: item.thumbnail }} style={styles.thumbnail} />
