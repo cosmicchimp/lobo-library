@@ -48,7 +48,7 @@ const SearchBar = ({ widthAnim, marginLeftAnim,quieried}) => {
           width: 
             (!quieried && userInput=="")
               ? widthAnim.interpolate({
-                  inputRange: [82, 100],
+                  inputRange: [78, 100],
                   outputRange: ["82%", "100%"],
                 })
                 : (quieried)

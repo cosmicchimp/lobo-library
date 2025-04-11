@@ -217,13 +217,13 @@ const styles = StyleSheet.create({
   },
   logoContainer: {
     position: "absolute",
-    top: 50,
+    top: 110,
     justifyContent: "center",
     alignItems: "center",
     marginTop: 320,
-    left: "46%",
-    width: 50,
-    height: 50,
+    left: "49%",
+    width: 30,
+    height: 30,
   },
   logo: {
     width: 80,

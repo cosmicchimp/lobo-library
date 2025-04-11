@@ -79,7 +79,7 @@ const styles = StyleSheet.create({
     alignSelf: "center",
   },
   bookInput: {
-    minWidth: "90%",
+    width: 100,
     marginLeft: 10,
     borderRadius: 10,
     color: "black",
