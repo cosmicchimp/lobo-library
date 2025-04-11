@@ -1,26 +1,15 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { StyleSheet, Dimensions, View, Text, Image, Animated, FlatList, TouchableOpacity, Linking } from 'react-native';
-import Carousel from 'react-native-reanimated-carousel';
+import carouselData from '../../assets/json/scraped_library_data';
 
 const LibraryCarousel = () => {
+  
   const [carouselItems, setCarouselItems] = useState([]);
-  const [currentIndex, setCurrentIndex] = useState(1); // Start from the second item after looping
   const flatListRef = useRef(null);
   const scrollX = useRef(new Animated.Value(0)).current;
-  const adjustedScrollX = Animated.subtract(scrollX, width); // remove the 1-item offset
 
-
-  useEffect(async () => {
-
-    // Fetch carousel json data from db
-    let carouselData;
-    try {
-      const response = await fetch("http://localhost:3006/api/carousel");
-      carouselData = await response.json();
-    } catch (error) {
-      console.error("Fetch failed:", error);
-    }
-
+  useEffect(() => {
+    //setCarouselItems(carouselData.carousel); // Use the data from the JSON file
     if (carouselData?.carousel?.length) {
         const data = carouselData.carousel;
         // Clone last + first items
@@ -29,39 +18,24 @@ const LibraryCarousel = () => {
           ...data, 
           data[0]
         ];
-        setCarouselItems(data);
-
-        // Auto-scroll functionality
-         const intervalId = setInterval(() => {
-        setCurrentIndex((prevIndex) => {
-          const nextIndex = (prevIndex + 1) % carouselItems.length; // Loop back to the first item
-          flatListRef.current?.scrollToIndex({ index: nextIndex, animated: true });
-          return nextIndex;
-        });
-      }, 1000000); // 3 secs
+        setCarouselItems(looped);
     
-          
         // Delay scrollToIndex slightly to allow rendering
         setTimeout(() => {
           flatListRef.current?.scrollToIndex({ index: 1, animated: false });
         }, 50);
-
-        // Clear the interval when the component is unmounted
-        return () => clearInterval(intervalId);
     }
-}, []);
-const handleScrollEnd = (event) => {
-    const offsetX = event.nativeEvent.contentOffset.x;
-    const index = Math.round(offsetX / width);
-  
-    if (index === 0) {
-        flatListRef.current?.scrollToIndex({ index: carouselItems.length - 1, animated: false });
-        //flatListRef.current?.scrollToIndex({ index: carouselItems.length - 2, animated: false });
-    } else if (index === carouselItems.length - 1) {
-        // flatListRef.current?.scrollToIndex({ index: 1, animated: false });
-        flatListRef.current?.scrollToIndex({ index: 0, animated: false });
-    }
-  };
+    }, []);
+    const handleScrollEnd = (event) => {
+        const offsetX = event.nativeEvent.contentOffset.x;
+        const index = Math.round(offsetX / width);
+      
+        if (index === 0) {
+          flatListRef.current?.scrollToIndex({ index: carouselItems.length - 2, animated: false });
+        } else if (index === carouselItems.length - 1) {
+          flatListRef.current?.scrollToIndex({ index: 1, animated: false });
+        }
+      };
   
 
   const {width, height} = Dimensions.get("screen");
@@ -98,7 +72,7 @@ const handleScrollEnd = (event) => {
   );
 
   return (
-    <View style={{ flex: 1, padding: 10, height: imageH, borderColor: "#007a86", borderTopColor:"#007a86", borderWidth:2 }}>
+    <View style={{ flex: 1, padding: 10, height: 5, borderColor: "#007a86", borderTopColor:"#007a86", borderWidth:2 }}>
 
       {/* Background images */}
       <View
@@ -106,9 +80,9 @@ const handleScrollEnd = (event) => {
       }>
         {carouselItems.map((item, index) => {
             const inputRange = [
-                (index -1.5) * width,
+                (index -1.3) * width,
                 index * width,
-                (index + 1.5) * width
+                (index + 1.3) * width
             ]
             const opacity = scrollX.interpolate({
                 inputRange,
@@ -127,7 +101,7 @@ const handleScrollEnd = (event) => {
       
       <Animated.FlatList
         ref={flatListRef}
-        style={{ flexGrow: 0, paddingHorizontal: 10 }}
+        style={{ flexGrow: 0, paddingHorizontal: 10 , }}
         data={carouselItems}
         removeClippedSubviews={false}
         renderItem={renderItem}
@@ -137,6 +111,11 @@ const handleScrollEnd = (event) => {
             [{nativeEvent: {contentOffset: {x: scrollX}}}],
             {useNativeDriver: true}
         )}
+        onScrollToIndexFailed={(info) => {
+          setTimeout(() => {
+            flatListRef.current?.scrollToIndex({ index: info.index, animated: false });
+          }, 500);
+        }}
         horizontal
         pagingEnabled
         showsHorizontalScrollIndicator={false}  // Optional: Hides the scroll indicator
